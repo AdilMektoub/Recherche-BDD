@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Ajout commande</title>
+<link rel="stylesheet" type="text/css"
+	href="/ufcm/src/main/resources/static/css/bootstrap.min.css"
+	th:href="@{css/bootstrap.min.css}" />
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+
+	<div class="container m-5 p-3">
+		<div class="panel panel-default">
+			<div class="panel-heading">				
+				<div th:if="${cmd.id_commande==null}">
+					<h3>Nouvelle commande</h3>
+				</div>
+				<div th:unless="${cmd.id_commande==null}">
+					<h3>Modification commande</h3>
+				</div>
+			</div>
+			<br />		
+			
+			
+			<div class="panel-body">
+				<form
+					th:action="@{saveCmd(idConnectedClient=${idConnectedClient})}"
+					method="POST">
+					<div th:if="${cmd.id_commande!=null}">
+						<input
+							class="form-control" type="hidden" name="id_commande"
+							th:value="${cmd.id_commande}" />
+					</div>
+					<div>
+						<input
+							class="form-control" type="hidden" name="date"
+							th:value="${cmd.date}" />							
+					</div>
+				
+					<div class="form-row ">
+						<div class="form-group text-left col-12 ">
+
+							<label for="produit">Produit</label> <input type="text"
+								class="form-control" id="produit" name="produit"
+								th:value="${cmd.produit}"> <span
+								th:errors="${cmd.produit}"></span>
+						</div>
+					</div>
+					<div class="form-row  ">
+						<div class="form-group text-left col-6">
+							<label for="nb">Nombre</label> <input type="number"
+								class="form-control" id="nb" name="nombre"
+								th:value="${cmd.nombre}"> <span
+								th:errors="${cmd.nombre}"></span>
+						</div>
+						<div class="form-group col-6">
+							<label for="prix">Prix unitaire (€)</label> <input type="number"
+								class="form-control" name="prix" id="prix"
+								placeholder="prix unitaire" th:value="${cmd.prix}">
+							<span th:errors="${cmd.prix}"></span>
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="col-5">
+							<button type="submit" name="submitcmd" value="save"
+								class="btn btn-primary my-2" style="width: 100%;">Enregistrer</button>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-5">
+							<div class="text-left">
+								<a th:href="@{login22(idConnectedClient=${idConnectedClient})}"
+									class="my-3 btn btn-primary" style="width: 100%;">Annuler</a>
+							</div>
+						</div>
+					</div>
+				</form>
+			</div>
+
+		</div>
+	</div>
+
+</body>
+</html>

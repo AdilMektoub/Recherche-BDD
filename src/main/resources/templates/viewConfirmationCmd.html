@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8" />
+<title>Confirmation de l'enregistrement de la commande</title>
+<link rel="stylesheet" type="text/css"
+	href="/ufcm/src/main/resources/static/css/bootstrap.min.css"
+	th:href="@{css/bootstrap.min.css}" />
+</head>
+<body>
+	<br />
+	<header>
+		<nav class="navbar navbar-expand-sm bg-light">
+			<ul class="navbar-nav">
+				<li class="nav-item"><a class="nav-link"
+					th:href="@{login22(idConnectedClient=${idConnectedClient})}">
+						Accueil </a>
+				</li>
+				<li class="nav-item">
+				<a class="nav-link" th:text="${username}">
+				</a></li>
+				<li class="nav-item"><a class="nav-link"
+					th:href="@{addCmd(idConnectedClient=${idConnectedClient})}">
+						Ajouter une commande </a></li>
+				<li class="nav-item"><a class="nav-link" th:href="@{login2}">
+						Logout </a></li>
+			</ul>
+		</nav>
+		<br />
+	</header>
+
+	<br />
+	<div class="container">
+	
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<h2>Commande enregistrée</h2>
+			</div>
+			<br />
+			<div class="panel-body">
+				<div>
+					<label class="control-label">Produit :</label> 
+					<label
+						class="control-label" th:text="${cmd.produit}"></label>
+					<div>
+						<label class="control-label">Prix :</label> <label
+							class="control-label" th:text="${cmd.prix} + '€'"></label>
+					</div>
+					<div>
+						<label class="control-label">Quantité :</label> <label
+							class="control-label" th:text="${cmd.nombre}"></label>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
